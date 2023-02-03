@@ -1,1 +1,2 @@
+NEW
 This is a test of copying the file and commiting the changes
