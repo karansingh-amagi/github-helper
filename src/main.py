@@ -30,7 +30,3 @@ class GithubHelper:
         
         shutil.rmtree(os.path.join(os.getcwd(), self.repo_name))
 
-
-gh = GithubHelper('github-helper', "karansingh-amagi", "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")
-gh.clone_and_copy("/home/karans/tasks/github-helper/src/copy_test_dir")
-gh.commit_push_delete(commit_msg="commit from github helper", branch_name='main')
