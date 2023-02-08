@@ -1,5 +1,6 @@
 from git import Repo
 from github import Github
+from github import PullRequest
 import shutil
 import os
 
@@ -46,28 +47,37 @@ class GithubHelper:
         except Exception as e:
             raise(e)
 
-    def create_pr(self, title: str, body: str, head: str, base: str = "main") -> Github.PullRequest:
-        gh_api = Github(self.password)
-        repo_name = self.org + '/' + self.repo_name
-        repo = gh_api.get_repo(repo_name)
-        pr = repo.create_pull(title=title, body=body, head=head, base=base)
-        
-        return pr
+    def create_pr(self, title: str, body: str, head: str, base: str = "main") -> PullRequest:
+        try:
+            print("Creating a Pull Request...")
+            gh_api = Github(self.password)
+            repo_name = self.org + '/' + self.repo_name
+            repo = gh_api.get_repo(repo_name)
+            pr = repo.create_pull(title=title, body=body, head=head, base=base)
+            
+            return pr
 
-    def merge_pr(self, pr_object: Github.PullRequest, commit_message: str, commit_title: str) -> bool:
-        merge_status = pr_object.merge(commit_message=commit_message, commit_title=commit_title)
-        return merge_status.merged
-        
+        except Exception as e:
+            raise e
+
+    def merge_pr(self, pr_object: PullRequest, commit_title: str, commit_message: str = None) -> bool:
+        try:
+            print("Creating a Merge Request...")
+            merge_status = pr_object.merge(commit_message=commit_message, commit_title=commit_title)
+            return merge_status.merged
+        except Exception as e:
+            raise e
 
     def merge_pr_by_num(self, pr_num: int, commit_message: str, commit_title: str) -> bool:
-        gh_api = Github(self.password)
-        repo_name = self.org + '/' + self.repo_name
-        repo = gh_api.get_repo(repo_name)
-        pr = repo.get_pull(pr_num)
+        try:
+            gh_api = Github(self.password)
+            repo_name = self.org + '/' + self.repo_name
+            repo = gh_api.get_repo(repo_name)
+            pr = repo.get_pull(pr_num)
+        except Exception as e: 
+            raise e
 
         return self.merge_pr(pr, commit_message=commit_message, commit_title=commit_title)
-
-
 
     def commit_push_delete(self, commit_msg: str, branch_name: str):
         self.commit_push(commit_msg, branch_name)
@@ -80,3 +90,9 @@ class GithubHelper:
         except Exception as e:
             raise(e)
     
+gh = GithubHelper(".", 'karansingh-amagi', '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', "karansingh-amagi")
+gh.commit_push("Testing my code", "test-branch")
+pr = gh.create_pr("Testing my code", "", "test-branch", "main")
+status = gh.merge_pr(pr, "Testing my code mr")
+
+print(status)
