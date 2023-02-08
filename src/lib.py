@@ -100,8 +100,8 @@ class GithubHelper:
             raise(e)
     
 gh = GithubHelper("github-helper", 'karansingh-amagi', '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', '.', "karansingh-amagi")
-gh.commit_push("Testing my code", "test-branch")
-pr = gh.create_pr("Testing my code", "", "test-branch", "main")
+gh.commit_push("Testing my code", "test-branch1")
+pr = gh.create_pr("Testing my code", "", "test-branch1", "main")
 status = gh.merge_pr(pr, "Testing my code mr", "test message")
 
 print(status)
