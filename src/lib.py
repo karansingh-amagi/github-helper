@@ -61,6 +61,7 @@ class GithubHelper:
             repo_name = self.org + '/' + self.repo_name
             print(repo_name)
             repo = gh_api.get_repo(repo_name)
+            print(repo)
             pr = repo.create_pull(title=title, body=body, head=head, base=base)
             
             return pr
