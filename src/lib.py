@@ -1,4 +1,5 @@
 from git import Repo
+from github import Github
 import shutil
 import os
 class GithubHelper:
@@ -6,6 +7,7 @@ class GithubHelper:
         self.username = username
         self.password = password
         self.repo_name = repo_name
+        self.org = org
 
         self.remote = "https://{}:{}@github.com/{}/{}.git".format(username, password, org, repo_name)
 
@@ -42,6 +44,29 @@ class GithubHelper:
 
         except Exception as e:
             raise(e)
+
+    def create_pr(self, title: str, head: str, base: str = "main", body: str = None) -> Github.PullRequest:
+        gh_api = Github(self.password)
+        repo_name = self.org + '/' + self.repo_name
+        repo = gh_api.get_repo(repo_name)
+        pr = repo.create_pull(title=title, body=body, head=head, base=base)
+        
+        return pr
+
+    def merge_pr(self, pr_object: Github.PullRequest, commit_message: str, commit_title: str) -> bool:
+        merge_status = pr_object.merge(commit_message=commit_message, commit_title=commit_title)
+        return merge_status.merged
+        
+
+    def merge_pr_by_num(self, pr_num: int, commit_message: str, commit_title: str) -> bool:
+        gh_api = Github(self.password)
+        repo_name = self.org + '/' + self.repo_name
+        repo = gh_api.get_repo(repo_name)
+        pr = repo.get_pull(pr_num)
+
+        return self.merge_pr(pr, commit_message=commit_message, commit_title=commit_title)
+
+
 
     def commit_push_delete(self, commit_msg: str, branch_name: str):
         self.commit_push(commit_msg, branch_name)
