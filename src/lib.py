@@ -2,6 +2,8 @@ from git import Repo
 from github import Github
 import shutil
 import os
+
+"testing merge"
 class GithubHelper:
     def __init__(self, repo_name, username, password, org="amagimedia") -> None:
         self.username = username
