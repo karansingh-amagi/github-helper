@@ -5,20 +5,23 @@ import shutil
 import os
 
 class GithubHelper:
-    def __init__(self, repo_name, username, password, org="amagimedia") -> None:
+    def __init__(self, repo_name: str, username: str, password: str, repo_path: str=None, org: str="amagimedia") -> None:
         self.username = username
         self.password = password
         self.repo_name = repo_name
+        self.repo_path = repo_path
         self.org = org
 
         self.remote = "https://{}:{}@github.com/{}/{}.git".format(username, password, org, repo_name)
 
     def clone(self):
         try:
-            if os.path.isdir(self.repo_name):
-                shutil.rmtree(os.path.join(os.getcwd(), self.repo_name))
-            Repo.clone_from(self.remote, self.repo_name)
-
+            if self.repo_path != None:
+                shutil.rmtree(self.repo_path)
+                Repo.clone_from(self.remote, self.repo_path)
+            else:
+                Repo.clone_from(self.remote, self.repo_name)
+                self.repo_path = str(os.path.join(os.getcwd(), self.repo_name))
             ## Implement logger
             print('clone finished')
 
@@ -28,14 +31,18 @@ class GithubHelper:
     def clone_and_copy(self, copy_dir):
         self.clone()
         try: 
-            dest = str(os.path.join(os.getcwd(), self.repo_name))
-            shutil.copytree(copy_dir, dest, dirs_exist_ok=True, ignore=shutil.ignore_patterns('.*', '_*'))
+            shutil.copytree(copy_dir, self.repo_path, dirs_exist_ok=True, ignore=shutil.ignore_patterns('.*', '_*'))
         except Exception as e:
             raise(e)
         
     def commit_push(self, commit_msg: str, branch_name: str):
         try: 
-            repo = Repo(self.repo_name)
+            if self.repo_path != None:
+                repo = Repo(self.repo_path)
+            else: 
+                self.clone()
+                repo = Repo(self.repo_path)
+
             repo.git.checkout('-B', branch_name)
             repo.git.add(".")
             repo.git.commit(m=commit_msg)
@@ -90,7 +97,7 @@ class GithubHelper:
         except Exception as e:
             raise(e)
     
-gh = GithubHelper(".", 'karansingh-amagi', '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', "karansingh-amagi")
+gh = GithubHelper("github-helper", 'karansingh-amagi', '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', '.', "karansingh-amagi")
 gh.commit_push("Testing my code", "test-branch")
 pr = gh.create_pr("Testing my code", "", "test-branch", "main")
 status = gh.merge_pr(pr, "Testing my code mr")
