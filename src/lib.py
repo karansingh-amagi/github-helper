@@ -44,10 +44,13 @@ class GithubHelper:
             else: 
                 self.clone()
                 repo = Repo(self.repo_path)
-
+            print('log')
             repo.git.checkout('-B', branch_name)
+            print('log')
             repo.git.add(".")
+            print('log')
             repo.git.commit(m=commit_msg)
+            print('log')
             repo.git.push('--set-upstream', repo.remote().name, branch_name)
 
             ## Implement logger
