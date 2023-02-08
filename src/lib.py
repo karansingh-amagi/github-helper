@@ -52,7 +52,7 @@ class GithubHelper:
             print("commit finished")
 
         except Exception as e:
-            raise(e)
+            pass
 
     def create_pr(self, title: str, body: str, head: str, base: str = "main") -> PullRequest:
         try:
