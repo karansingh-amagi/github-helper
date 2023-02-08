@@ -111,3 +111,4 @@ pr = gh.create_pr("Testing my code", "", "test-branch1", "main")
 status = gh.merge_pr(pr, "Testing my code mr", "test message")
 
 print(status)
+
