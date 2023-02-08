@@ -13,6 +13,8 @@ class GithubHelper:
         self.repo_name = repo_name
         self.repo_path = repo_path
         self.org = org
+        self.gh_api = Github(self.password)
+
 
         self.remote = "https://{}:{}@github.com/{}/{}.git".format(username, password, org, repo_name)
 
@@ -62,10 +64,9 @@ class GithubHelper:
     def create_pr(self, title: str, body: str, head: str, base: str = "main") -> PullRequest:
         try:
             print("Creating a Pull Request...")
-            gh_api = Github(self.password)
             repo_name = self.org + '/' + self.repo_name
             print(repo_name)
-            repo = gh_api.get_repo(repo_name)
+            repo = self.gh_api.get_repo(repo_name)
             print(repo)
             pr = repo.create_pull(title=title, body=body, head=head, base=base)
             
