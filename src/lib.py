@@ -69,7 +69,7 @@ class GithubHelper:
         except Exception as e:
             raise e
 
-    def merge_pr(self, pr_object: PullRequest, commit_title: str, commit_message: str = None) -> bool:
+    def merge_pr(self, pr_object: PullRequest, commit_title: str, commit_message: str) -> bool:
         try:
             print("Creating a Merge Request...")
             merge_status = pr_object.merge(commit_message=commit_message, commit_title=commit_title)
@@ -102,6 +102,6 @@ class GithubHelper:
 gh = GithubHelper("github-helper", 'karansingh-amagi', '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', '.', "karansingh-amagi")
 gh.commit_push("Testing my code", "test-branch")
 pr = gh.create_pr("Testing my code", "", "test-branch", "main")
-status = gh.merge_pr(pr, "Testing my code mr")
+status = gh.merge_pr(pr, "Testing my code mr", "test message")
 
 print(status)
