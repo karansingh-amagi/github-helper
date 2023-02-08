@@ -106,8 +106,8 @@ class GithubHelper:
             raise(e)
     
 gh = GithubHelper("github-helper", 'karansingh-amagi', os.environ.get("GIT_TOKEN"), '.', "karansingh-amagi")
-gh.commit_push("Testing my code", "test-branch1")
-pr = gh.create_pr("Testing my code", "", "test-branch1", "main")
+gh.commit_push("Testing my code", "test-branch2")
+pr = gh.create_pr("Testing my code", "", "test-branch2", "main")
 status = gh.merge_pr(pr, "Testing my code mr", "test message")
 
 print(status)
