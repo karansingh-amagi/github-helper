@@ -59,6 +59,7 @@ class GithubHelper:
             print("Creating a Pull Request...")
             gh_api = Github(self.password)
             repo_name = self.org + '/' + self.repo_name
+            print(repo_name)
             repo = gh_api.get_repo(repo_name)
             pr = repo.create_pull(title=title, body=body, head=head, base=base)
             
