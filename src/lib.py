@@ -3,7 +3,6 @@ from github import Github
 import shutil
 import os
 
-"testing merge"
 class GithubHelper:
     def __init__(self, repo_name, username, password, org="amagimedia") -> None:
         self.username = username
@@ -47,7 +46,7 @@ class GithubHelper:
         except Exception as e:
             raise(e)
 
-    def create_pr(self, title: str, head: str, base: str = "main", body: str = None) -> Github.PullRequest:
+    def create_pr(self, title: str, body: str, head: str, base: str = "main") -> Github.PullRequest:
         gh_api = Github(self.password)
         repo_name = self.org + '/' + self.repo_name
         repo = gh_api.get_repo(repo_name)
