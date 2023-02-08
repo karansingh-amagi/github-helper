@@ -99,7 +99,7 @@ class GithubHelper:
         except Exception as e:
             raise(e)
     
-gh = GithubHelper("github-helper", 'karansingh-amagi', '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', '.', "karansingh-amagi")
+gh = GithubHelper("github-helper", 'karansingh-amagi', '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', '.', "karansingh-amagi")
 gh.commit_push("Testing my code", "test-branch")
 pr = gh.create_pr("Testing my code", "", "test-branch", "main")
 status = gh.merge_pr(pr, "Testing my code mr")
