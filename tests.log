@@ -1,0 +1,5 @@
+[31;1m{[2023-02-09 18:22:23,046} - Test Logger - [CRITICAL] - Repository karan/github-helper does not exist (utils.py:42)[0m
+[32m{[2023-02-09 18:22:37,313} - Test Logger - [INFO] - Github configuration complete (utils.py:29)[0m
+[32m{[2023-02-09 18:22:37,315} - Test Logger - [INFO] - Testing Setup and Teardown (test_blip.py:35)[0m
+[32m{[2023-02-09 18:29:58,907} - Test Logger - [INFO] - Github configuration complete (utils.py:29)[0m
+[32m{[2023-02-09 18:30:09,435} - Test Logger - [INFO] - Finished cloning repository github-helper (utils.py:55)[0m
