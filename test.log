@@ -71,3 +71,15 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.'
 [32m{[2023-02-09 18:50:19,117} - Test Logger - [INFO] - Github configuration complete (utils.py:29)[0m
 [32m{[2023-02-09 18:50:41,933} - Test Logger - [INFO] - Github configuration complete (utils.py:29)[0m
 [32m{[2023-02-09 18:50:53,005} - Test Logger - [INFO] - Finished cloning repository github-helper (utils.py:55)[0m
+[32m{[2023-02-09 18:50:55,260} - Test Logger - [INFO] - Finished commit and pushed to origin (utils.py:85)[0m
+[32m{[2023-02-09 18:50:57,331} - Test Logger - [INFO] - Created a pull request (utils.py:95)[0m
+[32m{[2023-02-09 18:50:59,001} - Test Logger - [INFO] - Merge request created successfully (utils.py:106)[0m
+[33m{[2023-02-09 18:50:59,002} - Test Logger - [WARNING] - SETUP COMPLETE (test_blip.py:35)[0m
+[32m{[2023-02-09 18:50:59,004} - Test Logger - [INFO] - Testing Setup and Teardown (test_blip.py:44)[0m
+[32m{[2023-02-09 18:51:00,852} - Test Logger - [INFO] - Finished commit and pushed to origin (utils.py:85)[0m
+[32m{[2023-02-09 18:51:00,982} - Test Logger - [INFO] - Deleted the folder (utils.py:128)[0m
+[32m{[2023-02-09 18:51:02,908} - Test Logger - [INFO] - Created a pull request (utils.py:95)[0m
+[32m{[2023-02-09 18:51:05,145} - Test Logger - [INFO] - Merge request created successfully (utils.py:106)[0m
+[33m{[2023-02-09 18:51:05,145} - Test Logger - [WARNING] - TEARDOWN COMPLETE (test_blip.py:41)[0m
+[32m{[2023-02-09 18:52:30,542} - Test Logger - [INFO] - Github configuration complete (utils.py:29)[0m
+[32m{[2023-02-09 18:52:43,757} - Test Logger - [INFO] - Finished cloning repository github-helper (utils.py:55)[0m
